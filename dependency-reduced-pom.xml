@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>dougdoner</groupId>
+  <artifactId>initialparser</artifactId>
+  <version>0.1</version>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <release>11</release>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.2.2</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <transformers>
+                <transformer>
+                  <mainClass>org.dougdoner.Main</mainClass>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.akathist.maven.plugins.launch4j</groupId>
+        <artifactId>launch4j-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>l4j-clui</id>
+            <phase>package</phase>
+            <goals>
+              <goal>launch4j</goal>
+            </goals>
+            <configuration>
+              <headerType>console</headerType>
+              <outfile>target/initialparser.exe</outfile>
+              <jar>target/initialparser-0.1.jar</jar>
+              <errTitle>Initial-parser</errTitle>
+              <classPath>
+                <mainClass>org.dougdoner.Main</mainClass>
+              </classPath>
+              <jre>
+                <minVersion>1.8.0</minVersion>
+              </jre>
+              <versionInfo>
+                <fileVersion>0.1.0.0</fileVersion>
+                <txtFileVersion>0.1.0.0</txtFileVersion>
+                <fileDescription>Searches a csv file for names matching a set of initials</fileDescription>
+                <copyright>2020 Doug Doner</copyright>
+                <productVersion>0.1.0.0</productVersion>
+                <txtProductVersion>first release</txtProductVersion>
+                <productName>Initial-parser</productName>
+                <internalName>initparser</internalName>
+                <originalFilename>original.exe</originalFilename>
+              </versionInfo>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <properties>
+    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
+  </properties>
+</project>
